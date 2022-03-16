@@ -40,19 +40,21 @@ namespace Kalkulator
         
        private void addNum(string num)
         {
-            var x = resultTextBox.Text;
-            if (x == "0") {
-                resultTextBox.Text = "";
-            }
-            if (liczba1.Length > 0 && !erasedField) 
+            //if (resultTextBox.Text.Length < 9)
             {
-                resultTextBox.Text = "";
-                erasedField = true;
-            }
+                var x = resultTextBox.Text;
+                if (x == "0")
+                {
+                    resultTextBox.Text = "";
+                }
+                if (liczba1.Length > 0 && !erasedField)
+                {
+                    resultTextBox.Text = "";
+                    erasedField = true;
+                }
 
-            //if (typOperacji > 0)
-            //    resultTextBox.Text = "";
-            resultTextBox.Text = resultTextBox.Text + num;
+                resultTextBox.Text = resultTextBox.Text + num;
+            }
         }
 
         private void button_AC_Click(object sender, RoutedEventArgs e)
@@ -87,10 +89,16 @@ namespace Kalkulator
 
         private void button_Division_Click(object sender, RoutedEventArgs e)
         {
+
+            
             if (liczba1.Length == 0)
                 liczba1 = resultTextBox.Text;
             else
+            {
                 liczba2 = resultTextBox.Text;
+                if (liczba2 == liczba1)
+                    liczba2 = "";
+            }
 
             if (typOperacji != 0)
             {
@@ -98,31 +106,45 @@ namespace Kalkulator
                 resultTextBox.Text = liczba1;
             }
             typOperacji = 4;
+
+
         }
 
         private void button_Multiplikation_Click(object sender, RoutedEventArgs e)
         {
+
+
             if (liczba1.Length == 0)
                 liczba1 = resultTextBox.Text;
             else
+            {
                 liczba2 = resultTextBox.Text;
-
+                if (liczba2 == liczba1)
+                    liczba2 = "";
+            }
+                
             if (typOperacji != 0)
             {
                 Oblicz();
                 resultTextBox.Text = liczba1;
             }
-
             typOperacji = 3;
+
+
+
+
         }
         private void button_Plus_Click(object sender, RoutedEventArgs e)
         {
-           
+            
+
             if (liczba1.Length == 0)
                 liczba1 = resultTextBox.Text;
             else
             {
                 liczba2 = resultTextBox.Text;
+                if (liczba2 == liczba1)
+                    liczba2 = "";
             }
 
 
@@ -136,21 +158,20 @@ namespace Kalkulator
 
 
 
-            //if (liczba1.Length != 0 && liczba2.Length != 0)
-            //Oblicz();
-            //resultTextBox.Text = "0";
-
-
         }
         private void button_Minus_Click(object sender, RoutedEventArgs e)
         {
+
             
             if (liczba1.Length == 0)
                 liczba1 = resultTextBox.Text;
             else
             {
                 liczba2 = resultTextBox.Text;
+                if (liczba2 == liczba1)
+                    liczba2 = "";
             }
+
             if (typOperacji != 0)
             {
 
@@ -159,6 +180,7 @@ namespace Kalkulator
 
             }
             typOperacji = 2;
+
 
 
         }
@@ -293,7 +315,7 @@ namespace Kalkulator
                     }
                     else { 
                         MessageBox.Show($"elError");
-                    //  resultTextBox.Text = "Error"; 
+                    
 
             }
                     break;
@@ -304,10 +326,12 @@ namespace Kalkulator
                     wynik = Double.Parse(liczba1) + Double.Parse(liczba2);
                     break;
 
+                
+
             }
 
             liczba1 = wynik.ToString();
-          //  liczba2 = "";
+            liczba2 = "";
             erasedField = false;
         }
 
@@ -318,5 +342,5 @@ namespace Kalkulator
 
 
 }
-//Systemowy separator wpf trzeba zrobić 
+
 
